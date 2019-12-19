@@ -1,0 +1,31 @@
+﻿@model AppSchool.Models.ViewModels.CursoViewModel
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Editar", "Curso", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+       
+            @Html.HiddenFor(d=>d.IdCurso)
+            @Html.LabelFor(d => d.Grado)
+            @Html.TextBoxFor(d => d.Grado, "", new { @class = "form-control" })
+            @Html.LabelFor(d => d.Seccion)
+            @Html.TextBoxFor(d => d.Seccion, "", new { @class = "form-control" })
+            @Html.LabelFor(d => d.CantDeEstudiantes)
+            @Html.TextBoxFor(d => d.CantDeEstudiantes, "", new { @class = "form-control" })
+            @Html.LabelFor(d => d.ProfesorEncargado)
+            @Html.TextBoxFor(d => d.ProfesorEncargado, "", new { @class = "form-control" })
+            <br />
+        </div>
+        <div style="margin-left:20px">
+            <input value="Guardar" class="btn btn-primary" type="submit" />
+        </div>
+    </div>
+}

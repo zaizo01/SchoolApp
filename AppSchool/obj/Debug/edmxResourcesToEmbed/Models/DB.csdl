@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SchoolAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Curso">
+    <Key>
+      <PropertyRef Name="ID_curso" />
+    </Key>
+    <Property Name="ID_curso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Grado" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Seccion" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Cant_de_Estudiantes" Type="Int32" />
+    <Property Name="Profesor_encargado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Estudiantes" Relationship="Self.fk_curso" FromRole="Curso" ToRole="Estudiantes" />
+    <NavigationProperty Name="Materias" Relationship="Self.fk_cursos" FromRole="Curso" ToRole="Materias" />
+  </EntityType>
+  <EntityType Name="Estudiantes">
+    <Key>
+      <PropertyRef Name="ID_estudiantes" />
+    </Key>
+    <Property Name="ID_estudiantes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_curso" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Apellido" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Sexo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Edad" Type="Int32" />
+    <Property Name="Codigo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Curso" Relationship="Self.fk_curso" FromRole="Estudiantes" ToRole="Curso" />
+  </EntityType>
+  <EntityType Name="Materias">
+    <Key>
+      <PropertyRef Name="ID_materias" />
+    </Key>
+    <Property Name="ID_materias" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_curso" Type="Int32" Nullable="false" />
+    <Property Name="Profesor" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Materia" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Horario" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Duracion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Curso" Relationship="Self.fk_cursos" FromRole="Materias" ToRole="Curso" />
+  </EntityType>
+  <Association Name="fk_curso">
+    <End Role="Curso" Type="Self.Curso" Multiplicity="1" />
+    <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Curso">
+        <PropertyRef Name="ID_curso" />
+      </Principal>
+      <Dependent Role="Estudiantes">
+        <PropertyRef Name="ID_curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cursos">
+    <End Role="Curso" Type="Self.Curso" Multiplicity="1" />
+    <End Role="Materias" Type="Self.Materias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Curso">
+        <PropertyRef Name="ID_curso" />
+      </Principal>
+      <Dependent Role="Materias">
+        <PropertyRef Name="ID_curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SchoolAppEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Curso" EntityType="Self.Curso" />
+    <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" />
+    <EntitySet Name="Materias" EntityType="Self.Materias" />
+    <AssociationSet Name="fk_curso" Association="Self.fk_curso">
+      <End Role="Curso" EntitySet="Curso" />
+      <End Role="Estudiantes" EntitySet="Estudiantes" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cursos" Association="Self.fk_cursos">
+      <End Role="Curso" EntitySet="Curso" />
+      <End Role="Materias" EntitySet="Materias" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

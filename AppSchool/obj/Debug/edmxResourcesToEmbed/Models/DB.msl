@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SchoolAppModelStoreContainer" CdmEntityContainer="SchoolAppEntities">
+    <EntitySetMapping Name="Curso">
+      <EntityTypeMapping TypeName="SchoolAppModel.Curso">
+        <MappingFragment StoreEntitySet="Curso">
+          <ScalarProperty Name="ID_curso" ColumnName="ID_curso" />
+          <ScalarProperty Name="Grado" ColumnName="Grado" />
+          <ScalarProperty Name="Seccion" ColumnName="Seccion" />
+          <ScalarProperty Name="Cant_de_Estudiantes" ColumnName="Cant_de_Estudiantes" />
+          <ScalarProperty Name="Profesor_encargado" ColumnName="Profesor_encargado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estudiantes">
+      <EntityTypeMapping TypeName="SchoolAppModel.Estudiantes">
+        <MappingFragment StoreEntitySet="Estudiantes">
+          <ScalarProperty Name="ID_estudiantes" ColumnName="ID_estudiantes" />
+          <ScalarProperty Name="ID_curso" ColumnName="ID_curso" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="Edad" ColumnName="Edad" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Materias">
+      <EntityTypeMapping TypeName="SchoolAppModel.Materias">
+        <MappingFragment StoreEntitySet="Materias">
+          <ScalarProperty Name="ID_materias" ColumnName="ID_materias" />
+          <ScalarProperty Name="ID_curso" ColumnName="ID_curso" />
+          <ScalarProperty Name="Profesor" ColumnName="Profesor" />
+          <ScalarProperty Name="Materia" ColumnName="Materia" />
+          <ScalarProperty Name="Horario" ColumnName="Horario" />
+          <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

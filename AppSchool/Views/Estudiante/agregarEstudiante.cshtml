@@ -1,0 +1,38 @@
+﻿@model AppSchool.Models.ViewModels.EstudianteViewModel
+
+@{
+    ViewBag.Title = "Nuevo";
+    List<SelectListItem> items = (List<SelectListItem>)ViewBag.listaID;
+}
+}
+
+
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("AgregarEstudiante", "Estudiante", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.DropDownList("IdCurso", items, "IdCurso", new { @class = "form-control" })
+            @Html.LabelFor(d => d.Nombre)
+            @Html.TextBoxFor(d => d.Nombre, "", new { @class = "form-control" })
+            @Html.LabelFor(d => d.Apellido)
+            @Html.TextBoxFor(d => d.Apellido, "", new { @class = "form-control" })
+            @Html.LabelFor(d => d.Sexo)
+            @Html.TextBoxFor(d => d.Sexo, "", new { @class = "form-control" })
+            @Html.LabelFor(d => d.Edad)
+            @Html.TextBoxFor(d => d.Edad, "", new { @class = "form-control" })
+            @Html.LabelFor(d => d.Codigo)
+            @Html.TextBoxFor(d => d.Codigo, "", new { @class = "form-control" })
+            @Html.LabelFor(d => d.Telefono)
+            @Html.TextBoxFor(d => d.Telefono, "", new { @class = "form-control" })
+            @Html.LabelFor(d => d.Direccion)
+            @Html.TextBoxFor(d => d.Direccion, "", new { @class = "form-control" })
+            <br />
+        </div>
+        <div style="margin-left:20px">
+            <input value="Guardar" class="btn btn-primary" type="submit" />
+        </div>
+    </div>
+}
